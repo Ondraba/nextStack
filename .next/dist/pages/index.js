@@ -32,10 +32,6 @@ var _head = require('next\\dist\\lib\\head.js');
 
 var _head2 = _interopRequireDefault(_head);
 
-var _link = require('next\\dist\\lib\\link.js');
-
-var _link2 = _interopRequireDefault(_link);
-
 var _header = require('../components/header');
 
 var _header2 = _interopRequireDefault(_header);
@@ -44,19 +40,15 @@ var _footer = require('../components/footer');
 
 var _footer2 = _interopRequireDefault(_footer);
 
-var _styles = require('../styles/styles');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = 'C:\\Users\\datart\\Desktop\\nextProject\\pages\\about.js?entry';
+var _jsxFileName = 'C:\\Users\\datart\\Desktop\\nextProject\\pages\\index.js?entry';
 
+//import specific styles from the style.js file
 
 var _class = function (_React$Component) {
   (0, _inherits3.default)(_class, _React$Component);
 
-  //static async getInitialProps() {
-  //code will go here to get data
-  //   }
   function _class(props) {
     (0, _classCallCheck3.default)(this, _class);
 
@@ -66,43 +58,45 @@ var _class = function (_React$Component) {
   (0, _createClass3.default)(_class, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('div', { className: _styles.somestyles, __source: {
+      return _react2.default.createElement('div', {
+        __source: {
           fileName: _jsxFileName,
-          lineNumber: 16
+          lineNumber: 14
         }
       }, _react2.default.createElement(_head2.default, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 17
+          lineNumber: 15
         }
       }, _react2.default.createElement('title', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 18
+          lineNumber: 16
         }
-      }, 'Next -- About Us')), _react2.default.createElement(_header2.default, {
+      }, 'Next -- ', 'will insert page title here')), _react2.default.createElement(_header2.default, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20
+          lineNumber: 18
         }
-      }, 'About'), _react2.default.createElement('div', { className: _styles.aboutContainer, __source: {
+      }, 'Page Title'), _react2.default.createElement('div', {
+        __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 19
         }
       }, _react2.default.createElement('h2', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
+          lineNumber: 20
         }
-      }, 'About Us'), _react2.default.createElement('p', {
+      }, 'A Header'), _react2.default.createElement('p', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 21
+        }
+      }, 'Some text for my page')), _react2.default.createElement(_footer2.default, {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 23
-        }
-      }, 'Paragraph about us will go here maybe')), _react2.default.createElement(_footer2.default, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 25
         }
       }));
     }

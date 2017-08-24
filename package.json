@@ -6,6 +6,11 @@
     "start": "next start",
     "deploy": "now"
   },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "redux-logger": "^3.0.6",
+    "webpack": "^2.6.1"
+  },
   "dependencies": {
     "next": "latest",
     "axios": "^0.16.2",
