@@ -1,28 +1,38 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+'use strict'
 
+const { MongoClient } = require('mongodb')
+const api = require('./lib/api')
+const body = require('body-parser')
+const co = require('co')
+const express = require('express')
+const next = require('next')
 
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const handle = app.getRequestHandler()
 
-var app = express();
+const MONGO_URL = 'mongodb://localhost:27017/dwarfCMS'
+const PORT = 3000
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
-app.use(logger('dev'));
+co(function * () {
+  yield app.prepare()
 
-app.use(express.static(path.join(__dirname, 'public')));
+  console.log(`Connecting to ${MONGO_URL}`)
+  const db = yield MongoClient.connect(MONGO_URL)
 
+  const server = express()
 
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-    // render the error game
-    res.status(err.status || 500);
-    res.render('error');
-});
-module.exports = app;
+  server.use(body.json())
+  server.use((req, res, next) => {
+    req.db = db
+    next()
+  })
+  server.use('/api', api(db))
+
+  server.get('*', (req, res) => {
+    return handle(req, res)
+  })
+
+  server.listen(PORT)
+  console.log(`Listening on ${PORT}`)
+  }).catch(error => console.error(error.stack))

@@ -28,6 +28,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _redux = require('redux');
+
 var _head = require('next\\dist\\lib\\head.js');
 
 var _head2 = _interopRequireDefault(_head);
@@ -40,69 +42,115 @@ var _footer = require('../components/footer');
 
 var _footer2 = _interopRequireDefault(_footer);
 
+var _pageList = require('../components/pageList');
+
+var _pageList2 = _interopRequireDefault(_pageList);
+
+var _nextReduxWrapper = require('next-redux-wrapper');
+
+var _nextReduxWrapper2 = _interopRequireDefault(_nextReduxWrapper);
+
+var _store = require('../store');
+
+var _reactRedux = require('react-redux');
+
+var _reduxLogger = require('redux-logger');
+
+var _reduxThunk = require('redux-thunk');
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+var _link = require('next\\dist\\lib\\link.js');
+
+var _link2 = _interopRequireDefault(_link);
+
+var _index = require('../lib/reducers/index');
+
+var _index2 = _interopRequireDefault(_index);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _jsxFileName = 'C:\\Users\\datart\\Desktop\\nextProject\\pages\\index.js?entry';
 
+
+var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger.createLogger)());
+
 //import specific styles from the style.js file
 
-var _class = function (_React$Component) {
-  (0, _inherits3.default)(_class, _React$Component);
+var MainPage = function (_React$Component) {
+  (0, _inherits3.default)(MainPage, _React$Component);
 
-  function _class(props) {
-    (0, _classCallCheck3.default)(this, _class);
+  function MainPage() {
+    (0, _classCallCheck3.default)(this, MainPage);
 
-    return (0, _possibleConstructorReturn3.default)(this, (_class.__proto__ || (0, _getPrototypeOf2.default)(_class)).call(this, props));
+    return (0, _possibleConstructorReturn3.default)(this, (MainPage.__proto__ || (0, _getPrototypeOf2.default)(MainPage)).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(_class, [{
+  (0, _createClass3.default)(MainPage, [{
     key: 'render',
     value: function render() {
+
       return _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14
+          lineNumber: 33
         }
       }, _react2.default.createElement(_head2.default, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15
+          lineNumber: 34
         }
       }, _react2.default.createElement('title', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 16
+          lineNumber: 35
         }
       }, 'Next -- ', 'will insert page title here')), _react2.default.createElement(_header2.default, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 18
+          lineNumber: 37
         }
       }, 'Page Title'), _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19
+          lineNumber: 38
         }
-      }, _react2.default.createElement('h2', {
+      }, _react2.default.createElement(_pageList2.default, { title: 'index pagelist', __source: {
+          fileName: _jsxFileName,
+          lineNumber: 39
+        }
+      }), _react2.default.createElement('h2', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20
+          lineNumber: 40
         }
       }, 'A Header'), _react2.default.createElement('p', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21
+          lineNumber: 41
         }
       }, 'Some text for my page')), _react2.default.createElement(_footer2.default, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 43
         }
       }));
     }
+  }], [{
+    key: 'getInitialProps',
+    value: function getInitialProps(_ref) {
+      var store = _ref.store,
+          isServer = _ref.isServer;
+
+      return { isServer: isServer };
+    }
   }]);
 
-  return _class;
+  return MainPage;
 }(_react2.default.Component);
 
-exports.default = _class;
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+exports.default = (0, _nextReduxWrapper2.default)(_store.initStore, null, mapDispatchToProps)(MainPage);
